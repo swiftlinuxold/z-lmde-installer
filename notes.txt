@@ -1,0 +1,19 @@
+NEED TO MAKE SURE SWIFT LINUX AND NOT LINUX MINT IS DISPLAYED IN INSTALLER AND GRUB, ESP POST-INSTALL
+
+/usr/share/applications/debian-installer-launcher.desktop: Change icon
+
+command to install:
+gksudo /usr/bin/live-installer
+
+Files are in live CD and not installed OS
+/usr/lib/liveinstaller/gtk_interface.py : Change Mint to Swift
+/usr/lib/liveinstaller/installer.py
+/etc/live-installer/install.conf: Change distribution name and version
+
+Files to change:
+/etc/live-installer/install.conf
+/usr/lib/live-installer/frontend/gtk_interface.py
+/usr/share/icons/live-installer.png
+/usr/share/icons/live-installer.xpm
+/usr/share/live-installer/logo.png
+/usr/share/live-installer/logo.svg

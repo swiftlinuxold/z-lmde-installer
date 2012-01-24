@@ -1,0 +1,12 @@
+The title of the installer should be "Swift Linux Installer" instead of "Linux Mint Debian Edition Installer".
+
+All references to Linux Mint in the installation process should be replaced with Swift Linux.
+
+When you reach the "Select where you want to install Swift Linux" page, there should also be instructions saying:
+Then select the mount point by right-clicking the mouse on the Swift Linux partition.  For a conventional installation, select "Assign to /".
+
+When you reach the Bootloader section, there should be a note saying "The default option (which doesn't specifiy the partition) means installing GRUB to the MBR.  This is the conventional option."
+
+When you boot up after installation, the GRUB menu should show Swift Linux instead of Linux Mint.
+
+The desktop icon for installing Swift Linux should appear on the live CD but NOT in the post-installation setup.
