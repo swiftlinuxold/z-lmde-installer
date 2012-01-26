@@ -53,7 +53,7 @@ dest = '/usr/share/live-installer/logo.png'
 shutil.copyfile (src, dest)
 
 src = dir_develop + '/installer/usr_share_live-installer/logo.svg'
-dest = '/usr/share/live-installer/logo.png'
+dest = '/usr/share/live-installer/logo.svg'
 shutil.copyfile (src, dest)
 
 print 'FINISHED ADDING AND CHANGING THE INSTALLER'
