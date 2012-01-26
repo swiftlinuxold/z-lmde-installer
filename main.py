@@ -32,27 +32,29 @@ print 'BEGIN ADDING AND CHANGING THE INSTALLER'
 os.system('apt-get install -y live-installer')
 # os.system('') # Automatically clicks on OK.  Without this command, you would have to do this manually.
 
-# mint-debian-installer files:
-# /etc/skel/Desktop/mint-debian-installer.desktop
-# /usr/bin/mint-debian-installer
-# /usr/lib/linuxmint/mint-debian-installer/icon.png (change)
-# /usr/lib/linuxmint/mint-debian-installer/mint-debian-installer.glade (change)
-# /usr/lib/linuxmint/mint-debian-installer/mint-debian-installer.py (change)
-# /usr/lib/linuxmint/mint-debian-installer/version.py
-# /usr/share/applications/mint-debian-installer.desktop
+src = dir_develop + '/installer/etc_live-installer/install.conf'
+dest = '/etc/live-installer/install.conf'
+shutil.copyfile (src, dest)
 
-# src = dir_develop + '/installer/mint-debian-installer/icon.png'
-# dest = '/usr/lib/linuxmint/mint-debian-installer/icon.png'
-# shutil.copyfile (src, dest)
+src = dir_develop + '/installer/usr_lib_live-installer_frontend/gtk_interface.py'
+dest = '/usr/lib/live-installer/frontend/gtk_interface.py'
+shutil.copyfile (src, dest)
 
-# src = dir_develop + '/installer/mint-debian-installer/mint-debian-installer.glade'
-# dest = '/usr/lib/linuxmint/mint-debian-installer/mint-debian-installer.glade'
-# shutil.copyfile (src, dest)
+src = dir_develop + '/installer/usr_share_icons/live-installer.png'
+dest = '/usr/share/icons/live-installer.png'
+shutil.copyfile (src, dest)
 
-# src = dir_develop + '/installer/mint-debian-installer/mint-debian-installer.py'
-# dest = '/usr/lib/linuxmint/mint-debian-installer/mint-debian-installer.py'
-# shutil.copyfile (src, dest)
+src = dir_develop + '/installer/usr_share_icons/live-installer.xpm'
+dest = '/usr/share/icons/live-installer.xpm'
+shutil.copyfile (src, dest)
 
+src = dir_develop + '/installer/usr_share_live-installer/logo.png'
+dest = '/usr/share/live-installer/logo.png'
+shutil.copyfile (src, dest)
+
+src = dir_develop + '/installer/usr_share_live-installer/logo.svg'
+dest = '/usr/share/live-installer/logo.png'
+shutil.copyfile (src, dest)
 
 print 'FINISHED ADDING AND CHANGING THE INSTALLER'
 print '=========================================='
