@@ -40,6 +40,10 @@ src = dir_develop + '/installer/usr_lib_live-installer_frontend/gtk_interface.py
 dest = '/usr/lib/live-installer/frontend/gtk_interface.py'
 shutil.copyfile (src, dest)
 
+src = dir_develop + '/installer/usr_lib_live-installer/installer.py'
+dest = '/usr/lib/live-installer/installer.py'
+shutil.copyfile (src, dest)
+
 src = dir_develop + '/installer/usr_share_icons/live-installer.png'
 dest = '/usr/share/icons/live-installer.png'
 shutil.copyfile (src, dest)

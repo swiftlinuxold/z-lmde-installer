@@ -13,6 +13,7 @@ Files are in live CD and not installed OS
 Files to change:
 /etc/live-installer/install.conf
 /usr/lib/live-installer/frontend/gtk_interface.py
+/usr/lib/live-installer/installer.py
 /usr/share/icons/live-installer.png
 /usr/share/icons/live-installer.xpm
 /usr/share/live-installer/logo.png
