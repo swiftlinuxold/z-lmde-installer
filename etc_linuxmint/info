@@ -1,0 +1,10 @@
+RELEASE=1
+CODENAME=debian
+EDITION="Debian 32-bit"
+DESCRIPTION="Swift Linux"
+DESKTOP=IceWM
+TOOLKIT=GTK
+NEW_FEATURES_URL=http://www.linuxmint.com/rel_debian_whatsnew.php
+RELEASE_NOTES_URL=http://www.linuxmint.com/rel_debian.php
+USER_GUIDE_URL=http://ftp.heanet.ie/pub/linuxmint.com/stable/10/user-guide/english.pdf
+GRUB_TITLE=Swift Linux

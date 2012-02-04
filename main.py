@@ -60,5 +60,22 @@ src = dir_develop + '/installer/usr_share_live-installer/logo.svg'
 dest = '/usr/share/live-installer/logo.svg'
 shutil.copyfile (src, dest)
 
+# Replace /etc/issue, /etc/issue.net, /etc/lsb-release, and /etc/linuxmint/info
+src = dir_develop + '/installer/etc/issue'
+dest = '/etc/issue'
+shutil.copyfile (src, dest)
+
+src = dir_develop + '/installer/etc/issue.net'
+dest = '/etc/issue.net'
+shutil.copyfile (src, dest)
+
+src = dir_develop + '/installer/etc/lsb-release'
+dest = '/etc/lsb-release'
+shutil.copyfile (src, dest)
+
+src = dir_develop + '/installer/etc_linuxmint/info'
+dest = '/etc/linuxmint/info'
+shutil.copyfile (src, dest)
+
 print 'FINISHED ADDING AND CHANGING THE INSTALLER'
 print '=========================================='
