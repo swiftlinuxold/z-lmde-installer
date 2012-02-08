@@ -337,12 +337,14 @@ class InstallerEngine:
                 self.do_run_in_chroot("grub-install --force %s" % setup.grub_device)
                 self.do_configure_grub(our_total, our_current)
                 grub_retries = 0
+                self.update_progress(pulse=True, total=our_total, current=our_current, message=_("Checking GRUB"))
                 while (not self.do_check_grub(our_total, our_current)):
                     self.do_configure_grub(our_total, our_current)
                     grub_retries = grub_retries + 1
                     if grub_retries >= 5:
                         self.error_message(critical=True, message=_("WARNING: The grub bootloader was not configured properly! You need to configure it manually."))
                         break
+                self.update_progress(pulse=True, total=our_total, current=our_current, message=_("Finished checking GRUB"))
                         
             # Clean APT
             print " --> Cleaning APT"
@@ -404,13 +406,16 @@ class InstallerEngine:
                 if("linuxmint.png" in line):
                     found_theme = True
                     print " --> Found Grub theme: %s " % line
-                if ("menuentry" in line and "Mint" in line):
+                    self.update_progress(pulse=True, total=our_total, current=our_current, message=_("Found GRUB theme"))
+                if ("menuentry" in line and "Swift" in line):
                     found_entry = True
                     print " --> Found Grub entry: %s " % line
+                    self.update_progress(pulse=True, total=our_total, current=our_current, message=_("Found GRUB entry"))
             grubfh.close()
             return (found_entry)
         else:
             print "!No /target/boot/grub/grub.cfg file found!"
+            self.update_progress(pulse=True, total=our_total, current=our_current, message=_("No /target/boot/grub/grub.cfg file found!"))
             return False
 
     def do_mount(self, device, dest, type, options=None):
