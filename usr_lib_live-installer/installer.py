@@ -383,9 +383,12 @@ class InstallerEngine:
         self.update_progress(pulse=True, total=our_total, current=our_current, message=_("Configuring bootloader"))
         print " --> Running grub-mkconfig"
         self.do_run_in_chroot("grub-mkconfig -o /boot/grub/grub.cfg")
+        self.update_progress(pulse=True, total=our_total, current=our_current, message=_("Copying to /boot/grub/grub.cfg on target system"))
         grub_output = commands.getoutput("chroot /target/ /bin/sh -c \"grub-mkconfig -o /boot/grub/grub.cfg\"")
+        self.update_progress(pulse=True, total=our_total, current=our_current, message=_("Updating /var/log/live-installer-grub-output.log"))
         grubfh = open("/var/log/live-installer-grub-output.log", "w")
         grubfh.writelines(grub_output)
+        self.update_progress(pulse=True, total=our_total, current=our_current, message=_("Finished configuring bootloader"))
         grubfh.close()
         
     def do_check_grub(self, our_total, our_current):
