@@ -1185,7 +1185,7 @@ class InstallerWindow:
             elif(sel == self.PAGE_PARTITIONS):                
                 model = self.wTree.get_widget("treeview_disks").get_model()
                 error = True
-                errorMessage = _("Please select a root (/) partition before proceeding.  Right-click on the desired Swift Linux partition and select _Assign to /_.")
+                errorMessage = _("Please select a root (/) partition before proceeding.  Right-click on the desired Swift Linux partition and select "+chr(34)+'Assign to /'+chr(34)+'.')
                 for partition in self.setup.partitions:                    
                     if(partition.mount_as == "/"):
                         error = False                        
