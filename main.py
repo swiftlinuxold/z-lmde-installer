@@ -64,6 +64,11 @@ src = dir_develop + '/installer/usr_share_live-installer/languages'
 dest = '/usr/share/live-installer/languages'
 shutil.copyfile (src, dest)
 
+src = dir_develop + '/installer/usr_share_live-installer/locales'
+dest = '/usr/share/live-installer/locales'
+shutil.copyfile (src, dest)
+
+
 # Replace /etc/issue, /etc/issue.net, /etc/lsb-release, and /etc/linuxmint/info
 src = dir_develop + '/installer/etc/issue'
 dest = '/etc/issue'
