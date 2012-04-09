@@ -25,8 +25,8 @@ else:
 # =================================================================================
 
 import shutil
-print '======================================='
-print 'BEGIN ADDING AND CHANGING THE INSTALLER'
+os.system ('echo =======================================')
+os.system ('echo BEGIN ADDING AND CHANGING THE INSTALLER')
 
 # Adding the live-installer package
 os.system('apt-get install -y live-installer')
@@ -86,5 +86,5 @@ src = dir_develop + '/installer/etc_linuxmint/info'
 dest = '/etc/linuxmint/info'
 shutil.copyfile (src, dest)
 
-print 'FINISHED ADDING AND CHANGING THE INSTALLER'
-print '=========================================='
+os.system ('echo FINISHED ADDING AND CHANGING THE INSTALLER')
+os.system ('echo ==========================================')
