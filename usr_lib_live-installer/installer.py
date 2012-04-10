@@ -212,6 +212,14 @@ class InstallerEngine:
             self.do_run_in_chroot("cat /tmp/newusers.conf | chpasswd")
             self.do_run_in_chroot("rm -rf /tmp/newusers.conf")
             
+            # Adjust LightDM for the new user
+            # Bash command: sed -i 's_autologin_#autologin_g' /etc/lightdm/lightdm.conf
+            old_text = chr(92) + 'nautologin'
+            new_text = chr(92) + 'n#autologin'
+            sed_parameter = chr(39) + 's_' + old_text + '_' + new_text + '_g' + chr(39)
+            sed_command = 'sed -i ' + sed_parameter + ' /etc/lightdm/lightdm.conf'
+            self.do_run_in_chroot(sed_command)
+            
             # write the /etc/fstab
             print " --> Writing fstab"
             our_current += 1
