@@ -36,7 +36,7 @@ def change_text (filename, text_old, text_new):
     
 def add_pkg (packages):
     os.system ('echo INSTALLING ' + packages)
-    os.system ('apt-get install ' + packages)
+    os.system ('apt-get install -qq ' + packages)
     
 def remove_line_from_file (filename, string_trigger):
     for line in fileinput.input(filename,inplace =1):
@@ -45,7 +45,7 @@ def remove_line_from_file (filename, string_trigger):
             print line 
 
 # Adding the live-installer package
-os.system('apt-get install -y live-installer')
+add_pkg ('live-installer')
 # os.system('') # Automatically clicks on OK.  Without this command, you would have to do this manually.
 
 src = dir_develop + '/installer/etc_live-installer/install.conf'
