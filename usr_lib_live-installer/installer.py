@@ -204,12 +204,16 @@ class InstallerEngine:
             print " --> Adding new user"
             our_current += 1
             self.update_progress(total=our_total, current=our_current, message=_("Adding user to system"))           
+            print ("useradd -s %s -c \'%s\' -G sudo -m %s" % ("/bin/bash", setup.real_name, setup.username))
             self.do_run_in_chroot("useradd -s %s -c \'%s\' -G sudo -m %s" % ("/bin/bash", setup.real_name, setup.username))
+            print ("Adding new users to /target/tmp/newusers.conf")
             newusers = open("/target/tmp/newusers.conf", "w")
             newusers.write("%s:%s\n" % (setup.username, setup.password1))
             newusers.write("root:%s\n" % setup.password1)
             newusers.close()
+            print ("cat /tmp/newusers.conf | chpasswd")
             self.do_run_in_chroot("cat /tmp/newusers.conf | chpasswd")
+            print ("rm -rf /tmp/newusers.conf")
             self.do_run_in_chroot("rm -rf /tmp/newusers.conf")
             
             # Adjust LightDM for the new user
