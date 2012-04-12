@@ -46,7 +46,42 @@ def remove_line_from_file (filename, string_trigger):
 
 # Adding the live-installer package
 add_pkg ('live-installer')
-# os.system('') # Automatically clicks on OK.  Without this command, you would have to do this manually.
+
+# Install apt-rdepends to recursively obtain list of live-installer package dependencies
+os.system ('dpkg -i ' + dir_develop + '/installer/deb/apt-rdepends*.deb')
+file_deps = 'list.txt'
+os.system ('rm ' + file_deps)
+os.system ('apt-rdepends live-installer >> ' + file_deps)
+
+# Alter the list so it can be used in an apt-get install command
+import fileinput
+for line in fileinput.input(file_deps,inplace =1):
+    line = line.split("(")[0] # In each line, remove '(' and everything that comes afterwards
+    print line
+change_text (file_deps, '  Depends: ', '')
+change_text (file_deps, '  PreDepends: ', '')
+change_text (file_deps, '\n\n ', '\n')
+# Remove from package installation list the packages with no installation candidate
+remove_line_from_file (file_deps, 'debconf-2.0')
+remove_line_from_file (file_deps, 'awk')
+remove_line_from_file (file_deps, 'libgl1')
+remove_line_from_file (file_deps, 'libblas.so.3gf')
+remove_line_from_file (file_deps, 'liblapack.so.3gf')
+list_with_newlines = open(file_deps, 'r').read()
+list_with_spaces = list_with_newlines.replace ('\n', ' ')
+os.system ('rm ' + file_deps)
+os.system ('echo RECURSIVELY UPDATING live-installer and dependencies')
+os.system ('echo PRE-CORRECTING installation errors')
+add_pkg ('libgl1-mesa-swx11 libgl1-mesa-glx')
+add_pkg ('debconf cdebconf')
+add_pkg ('libblas3gf libatlas3gf-base')
+add_pkg ('liblapack3gf libatlas3gf-base')
+add_pkg ('original-awk mawk gawk')
+os.system ('echo NOW UPDATING live-installer and dependencies')
+add_pkg (list_with_spaces)
+
+os.system ('echo live-installer and dependencies are now up to date')
+os.system ('echo Making the changes specific to Swift Linux')
 
 src = dir_develop + '/installer/etc_live-installer/install.conf'
 dest = '/etc/live-installer/install.conf'
@@ -102,37 +137,9 @@ src = dir_develop + '/installer/etc_linuxmint/info'
 dest = '/etc/linuxmint/info'
 shutil.copyfile (src, dest)
 
-# Install apt-rdepends to recursively obtain list of live-installer package dependencies
-os.system ('dpkg -i ' + dir_develop + '/installer/deb/apt-rdepends*.deb')
-file_deps = 'list.txt'
-os.system ('rm ' + file_deps)
-os.system ('apt-rdepends live-installer >> ' + file_deps)
+src = dir_develop + '/installer/usr_share_applications/debian-installer-launcher.desktop'
+dest = '/usr/share/applications/debian-installer-launcher.desktop'
+shutil.copyfile (src, dest)
 
-# Alter the list so it can be used in an apt-get install command
-import fileinput
-for line in fileinput.input(file_deps,inplace =1):
-    line = line.split("(")[0] # In each line, remove '(' and everything that comes afterwards
-    print line
-change_text (file_deps, '  Depends: ', '')
-change_text (file_deps, '  PreDepends: ', '')
-change_text (file_deps, '\n\n ', '\n')
-# Remove from package installation list the packages with no installation candidate
-remove_line_from_file (file_deps, 'debconf-2.0')
-remove_line_from_file (file_deps, 'awk')
-remove_line_from_file (file_deps, 'libgl1')
-remove_line_from_file (file_deps, 'libblas.so.3gf')
-remove_line_from_file (file_deps, 'liblapack.so.3gf')
-list_with_newlines = open(file_deps, 'r').read()
-list_with_spaces = list_with_newlines.replace ('\n', ' ')
-os.system ('rm ' + file_deps)
-os.system ('echo RECURSIVELY UPDATING live-installer and dependencies')
-os.system ('echo PRE-CORRECTING installation errors')
-add_pkg ('libgl1-mesa-swx11 libgl1-mesa-glx')
-add_pkg ('debconf cdebconf')
-add_pkg ('libblas3gf libatlas3gf-base')
-add_pkg ('liblapack3gf libatlas3gf-base')
-add_pkg ('original-awk mawk gawk')
-os.system ('echo NOW UPDATING live-installer and dependencies')
-add_pkg (list_with_spaces)
 os.system ('echo FINISHED ADDING AND CHANGING THE INSTALLER')
 os.system ('echo ==========================================')

@@ -1,1 +1,5 @@
 This is the repository for changing the installer.  This replaces references to Linux Mint with references to Swift Linux.
+
+PLEASE NOTE: If certain dependencies of live-installer are not up-to-date, the installation process
+may fail with a mysterious error that looks something like: 
+GLib-CRITICAL **: g_str_has_prefix: assertion `str != NULL' failed
